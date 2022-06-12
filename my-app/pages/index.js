@@ -160,6 +160,7 @@ export default function Home() {
     return web3Provider;
   };
 
+  
   useEffect(() => {
     if (!walletConnected) {
       web3ModalRef.current = new Web3Modal({
