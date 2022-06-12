@@ -255,6 +255,14 @@ export default function Home() {
     return web3Provider;
   };
 
+  const onPageLoad = async () => {
+    await connectWallet()      
+    const presaleStarted = await checkIfPresaleStarted();
+    if(presaleStarted) {
+      await checkIfPresaleEnded();
+    }
+      
+  }
   // useEffects are used to react to changes in state of the website
   // The array at the end of function call represents what state changes will trigger this effect
   // In this case, whenever the value of `walletConnected` changes - this effect will be called
@@ -268,13 +276,15 @@ export default function Home() {
         providerOptions: {},
         disableInjectedProvider: false,
       });
-      connectWallet();
+
+      onPageLoad();
+      //connectWallet();
 
       // Check if presale has started and ended
-      const _presaleStarted = checkIfPresaleStarted();
-      if (_presaleStarted) {
-        checkIfPresaleEnded();
-      }
+      //const _presaleStarted = checkIfPresaleStarted();
+      //if (_presaleStarted) {
+      //  checkIfPresaleEnded();
+      //}
 
       getTokenIdsMinted();
 
