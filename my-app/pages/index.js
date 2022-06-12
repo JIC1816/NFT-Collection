@@ -256,7 +256,8 @@ export default function Home() {
   };
 
   const onPageLoad = async () => {
-    await connectWallet()      
+    await connectWallet();
+    await getOwner();      
     const presaleStarted = await checkIfPresaleStarted();
     if(presaleStarted) {
       await checkIfPresaleEnded();
